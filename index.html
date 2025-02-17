@@ -4,23 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fake YouTube Link Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h2>Fake YouTube Link Generator</h2>
-    <input type="text" id="originalLink" placeholder="Enter your link here">
+    <input type="text" id="mainLink" placeholder="Enter your link here">
     <button onclick="generateLink()">Generate</button>
-    <p id="generatedLink"></p>
-    
+    <div id="output"></div>
+
     <script>
         function generateLink() {
-            let originalLink = document.getElementById('originalLink').value;
-            if (originalLink === '') {
+            let mainLink = document.getElementById("mainLink").value;
+            if (!mainLink) {
                 alert("Please enter a valid link");
                 return;
             }
             
-            let fakeYouTubeLink = `https://www.youtube.com/redirect?q=${encodeURIComponent(originalLink)}`;
-            document.getElementById('generatedLink').innerHTML = `<a href="${fakeYouTubeLink}" target="_blank">Click Here</a>`;
+            let fakeYouTubeLink = "https://www.youtube.com/watch?v=" + btoa(mainLink).slice(0, 10);
+            
+            let outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `<p>Generated YouTube Link: <a href="${mainLink}" target="_blank">${fakeYouTubeLink}</a></p>`;
         }
     </script>
 </body>
