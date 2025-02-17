@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake YouTube Link Generator</title>
+</head>
+<body>
+    <h2>Fake YouTube Link Generator</h2>
+    <input type="text" id="originalLink" placeholder="Enter your link here">
+    <button onclick="generateLink()">Generate</button>
+    <p id="generatedLink"></p>
+    
+    <script>
+        function generateLink() {
+            let originalLink = document.getElementById('originalLink').value;
+            if (originalLink === '') {
+                alert("Please enter a valid link");
+                return;
+            }
+            
+            let fakeYouTubeLink = `https://www.youtube.com/redirect?q=${encodeURIComponent(originalLink)}`;
+            document.getElementById('generatedLink').innerHTML = `<a href="${fakeYouTubeLink}" target="_blank">Click Here</a>`;
+        }
+    </script>
+</body>
+</html>
